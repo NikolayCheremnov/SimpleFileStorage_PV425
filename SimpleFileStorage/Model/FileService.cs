@@ -17,12 +17,12 @@
         // Upload - загрузить файл в систему
         // вход: 
         // выход: внутрисистемный идентификатор сохраненного файла
-        public async Task<Guid> Upload(UploadFileParam param, Guid fileID)
+        public async Task<Guid> Upload(UploadFileParam param)
         {
             // формируем объекты для добавления в хранилище файлов: метаданные и сам файл
             FileMetadata metadata = new FileMetadata()
             {
-                FileID = fileID,
+                FileID = param.FileID,
                 FileName = param.FileName,
                 ContentType = param.ContentType,
                 SizeBytes = param.Data.Length,
@@ -30,7 +30,7 @@
             };
             FileData data = new FileData()
             {
-                FileID = fileID,
+                FileID = param.FileID,
                 Data = param.Data,
             };
             // сохранить метаданные и файл в хранилища
@@ -39,7 +39,7 @@
             await _metadatas.Insert(metadata);
             await _files.Insert(data);
             // возвращаем идентификатор файла для возможности получения метаданных и скачивания файла в дальнейшем
-            return fileID;
+            return param.FileID;
         }
 
         // GetFileMetadata - получить метаданные файла

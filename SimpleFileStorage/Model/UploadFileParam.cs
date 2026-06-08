@@ -3,6 +3,7 @@
     // UploadFileParam - параметр для загрузки файла
     public class UploadFileParam
     {
+        public Guid FileID { get; set; } = Guid.NewGuid();
         public required string FileName { get; set; }
         public required string ContentType { get; set; }
         public required byte[] Data { get; set; }
