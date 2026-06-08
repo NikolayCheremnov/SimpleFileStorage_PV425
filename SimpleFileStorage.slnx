@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="SimpleFileStorage/SimpleFileStorage.csproj" />
+  <Project Path="SimpleFileStorageTests/SimpleFileStorageTests.csproj" Id="ec8af40a-4b3d-47d0-b5d4-9dd5ace32c44" />
 </Solution>
