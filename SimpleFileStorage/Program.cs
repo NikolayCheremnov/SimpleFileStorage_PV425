@@ -27,7 +27,8 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddSingleton<FileService>();
 
 // ВАРИАНТ КОНФИГУРАЦИИ СЕРВИСА 3: С БД Postgres + S3
-builder.Services.AddDbContextFactory<ApplicationDbContext>((IServiceProvider serviceProvider, DbContextOptionsBuilder opts) => {
+builder.Services.AddDbContextFactory<ApplicationDbContext>((IServiceProvider serviceProvider, DbContextOptionsBuilder opts) =>
+{
     // для определения используемой строки подключения задействуется значения env-переменной DB_CONNECTION_PROFILE
     // TODO: прочитать про env vars (environment variables - переменные окружения) - их использование и реализация в .NET
     IConfiguration config = serviceProvider.GetRequiredService<IConfiguration>();
@@ -37,7 +38,7 @@ builder.Services.AddDbContextFactory<ApplicationDbContext>((IServiceProvider ser
 });
 builder.Services.AddSingleton<IFileMetadataRepository, FileStorage>();
 builder.Services.AddSingleton<S3ServicesFactory>();
-builder.Services.AddSingleton<IAmazonS3>(opts => opts.GetRequiredService<S3ServicesFactory>().CreateClient());
+builder.Services.AddSingleton(opts => opts.GetRequiredService<S3ServicesFactory>().CreateClient());
 builder.Services.AddSingleton<IFileDataRepository>(opts => opts.GetRequiredService<S3ServicesFactory>().CreateStorage());
 builder.Services.AddSingleton<FileService>();
 

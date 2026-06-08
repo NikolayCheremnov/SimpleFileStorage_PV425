@@ -6,8 +6,8 @@ namespace SimpleFileStorage.Stub
     // RepositoriesStub - in-memory заглушка для IFileMetadataRepository и IFileDataRepository
     public class RepositoriesStub : IFileMetadataRepository, IFileDataRepository
     {
-        private static Dictionary<Guid, FileMetadata> metadatas = new();  
-        private static Dictionary<Guid, FileData> files = new();  
+        private static Dictionary<Guid, FileMetadata> metadatas = new();
+        private static Dictionary<Guid, FileData> files = new();
 
         public RepositoriesStub() { }
 
