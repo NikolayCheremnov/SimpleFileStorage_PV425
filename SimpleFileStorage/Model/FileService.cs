@@ -17,10 +17,8 @@
         // Upload - загрузить файл в систему
         // вход: 
         // выход: внутрисистемный идентификатор сохраненного файла
-        public async Task<Guid> Upload(UploadFileParam param)
+        public async Task<Guid> Upload(UploadFileParam param, Guid fileID)
         {
-            // генерируем внутрисистемный идентификатор для нового файла
-            Guid fileID = Guid.NewGuid();
             // формируем объекты для добавления в хранилище файлов: метаданные и сам файл
             FileMetadata metadata = new FileMetadata()
             {
